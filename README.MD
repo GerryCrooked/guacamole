@@ -54,9 +54,9 @@ networks:
   guac-net:
 ```
 ## add the environment variables in portainer and define them:
-MYSQLDBRootPass
-MYSQLDBUser
-MYSQLDBUserPass
+MYSQLDBRootPass <br>
+MYSQLDBUser <br>
+MYSQLDBUserPass <br>
 
 ## initialize DB
 ```
@@ -66,14 +66,12 @@ now start your stack in portainer
 ```
  docker cp initdb.sql guacdb:/guac_db.sql 
 ```
-<br> 
+enter into your container and login to your mysql server 
 ```
- docker exec -it guacdb bash
- mysql -u root -p
+docker exec -it guacdb bash
+mysql -u root -p
 ```
-<br> 
 enter your root password as per environment variable and change "USERNAME" in the statement below to the MYSQLDBUser
-<br> 
 ```
  GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'USERNAME'@'%';
  FLUSH PRIVILEGES;
