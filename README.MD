@@ -71,7 +71,7 @@ enter into your container and login to your mysql server
 docker exec -it guacdb bash
 mysql -u root -p
 ```
-enter your root password as per environment variable and change "USERNAME" in the statement below to the MYSQLDBUser
+enter your root password as per environment variable. <br> copy the statement below and change "USERNAME" to the environment variable MYSQLDBUser
 ```
  GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'USERNAME'@'%';
  FLUSH PRIVILEGES;
