@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  guacd:
+    container_name: guacd
+    image: guacamole/guacd:latest
+    restart: unless-stopped
+    networks:
+      - guac-net
+
+  guacdb:
+    container_name: guacdb
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQLDBRootPass}
+      MYSQL_DATABASE: 'guacamole_db'
+      MYSQL_USER: ${MYSQLDBUser}
+      MYSQL_PASSWORD: ${MYSQLDBUserPass}
+    volumes:
+      - /opt/docker/guac/db-data:/var/lib/mysql
+      - /opt/docker/guac/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+    networks:
+      - guac-net
+
+  guacamole:
+    container_name: guacamole
+    image: guacamole/guacamole:latest
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - /opt/docker/guac/drive:/drive
+    environment:
+      GUACD_HOSTNAME: "guacd"
+      MYSQL_HOSTNAME: "guacdb"
+      MYSQL_DATABASE: "guacamole_db"
+      MYSQL_USER: ${MYSQLDBUser}
+      MYSQL_PASSWORD: ${MYSQLDBUserPass}
+      TOTP_ENABLED: "true"
+    depends_on:
+      - guacdb
+      - guacd
+    networks:
+      - guac-net
+
+networks:
+  guac-net:
