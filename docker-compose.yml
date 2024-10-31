@@ -10,6 +10,7 @@ services:
 
   guacdb:
     container_name: guacdb
+    build: ./dockerfile
     image: mysql:latest
     restart: unless-stopped
     environment:
@@ -18,8 +19,8 @@ services:
       MYSQL_USER: ${MYSQLDBUser}
       MYSQL_PASSWORD: ${MYSQLDBUserPass}
     volumes:
-      - /opt/docker/guac/db-data:/var/lib/mysql
-      - /opt/docker/guac/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - ./db-data:/var/lib/mysql
+      - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
     networks:
       - guac-net
 
@@ -30,7 +31,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - /opt/docker/guac/drive:/drive
+      - ./drive:/drive
     environment:
       GUACD_HOSTNAME: "guacd"
       MYSQL_HOSTNAME: "guacdb"
