@@ -11,4 +11,7 @@ git clone https://github.com/GerryCrooked/guacamole
 ```
  docker compose up -d
 ```
-## 4. navigate to your instance and login <3
+## 4. wait a minute, navigate to your instance and login <3
+default login credentials are: <br>
+username: guacadmin <br>
+password: guacadmin
