@@ -60,22 +60,22 @@ MYSQLDBUserPass
 
 ## initialize DB
 ```
-docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
+ docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
 ```
 now start your stack in portainer
 ```
-docker cp initdb.sql guacdb:/guac_db.sql 
+ docker cp initdb.sql guacdb:/guac_db.sql 
 ```
 <br>
 ```
-docker exec -it guacdb bash
-mysql -u root -p
+ docker exec -it guacdb bash
+ mysql -u root -p
 ```
 enter your root password as per environment variable and change "USERNAME" in the statement below to the MYSQLDBUser
 ```
-GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'USERNAME'@'%';
-FLUSH PRIVILEGES;
-exit;
+ GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'USERNAME'@'%';
+ FLUSH PRIVILEGES;
+ exit;
 ```
 
 ## restart your stack and you should be fine
