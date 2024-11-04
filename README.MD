@@ -29,3 +29,8 @@ the docker-compose.yml is using the official images <br>
 - mysql:latest <br>
 
 the initdb.sql has been taken from guacamole 1.5.5
+
+# After the installation
+if you want to access the application from outside you network, you have to use a reverse proxy, like NPM or Zoraxy to forward the traffic to your application. <br> This however is not part of project, pleaes refer to the corresponding projects in regards to it. <br> <br>
+https://github.com/tobychui/zoraxy <br>
+https://github.com/NginxProxyManager/nginx-proxy-manager
