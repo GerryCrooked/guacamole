@@ -19,3 +19,12 @@ git clone https://github.com/GerryCrooked/guacamole
 default login credentials are: <br>
 username: guacadmin <br>
 password: guacadmin
+
+
+# Additional information
+the docker-compose.yml is using the official images <br>
+- guacamole/guacd:latest <br>
+- guacamole/guacamole:latest <br>
+- mysql:latest <br>
+
+the initdb.sql has been taken from guacamole 1.5.5
